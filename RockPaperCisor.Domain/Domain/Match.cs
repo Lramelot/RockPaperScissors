@@ -14,11 +14,11 @@ namespace RockPaperCisor.Domain.Domain
 
         public Player Player1 { get; private set; }
 
-        public Player Player2 { get; private set; }
+        public Player Player2 { get; }
 
         public GameState State { get; private set; }
 
-        public IReadOnlyList<Round> Rounds { get => _rounds.ToList().AsReadOnly(); }
+        public IReadOnlyList<Round> Rounds => _rounds.ToList().AsReadOnly();
 
         private readonly ICollection<Round> _rounds = new List<Round>();
 
@@ -126,8 +126,7 @@ namespace RockPaperCisor.Domain.Domain
         }
 
         private const uint MaxRound = 5;
-
-        private readonly uint MustWinNumber = (MaxRound / 2) + 1;
+        private const uint MustWinNumber = MaxRound / 2 + 1;
 
         private int Player1WonRounds => _rounds.Where(r => r.Winner == Winner.Player1).Count();
         private int Player2WonRounds => _rounds.Where(r => r.Winner == Winner.Player2).Count();

@@ -18,7 +18,8 @@ namespace RockPaperCisor.Domain.Domain
             {
                 return LosingValue;
             }
-            else if (opponentType == GetType())
+
+            if (opponentType == GetType())
             {
                 return TieValue;
             }
